@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('exam_enrollments', function (Blueprint $table) {
             $table->id('exam_id');
-            $table->foreignId('booklet_id')->constrained('booklets', 'booklet_id');
+            $table->foreignId('booklet_id');
             $table->dateTime('exam_date');
             $table->enum('status', ['pending', 'completed', 'failed']);
             $table->integer('marks_obtained')->nullable();

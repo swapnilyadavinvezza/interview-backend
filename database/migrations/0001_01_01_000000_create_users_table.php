@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('username', 50);
             $table->string('password', 100);
             $table->string('email', 100);
-            $table->foreignId('user_type_id')->constrained('user_types');
+            $table->foreignId('user_type_id');
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->enum('status', [1, 0])->default(1);

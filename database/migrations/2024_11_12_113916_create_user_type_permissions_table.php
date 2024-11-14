@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_type_permissions', function (Blueprint $table) {
-            $table->foreignId('user_type_id')->constrained('user_types');
-            $table->foreignId('permission_id')->constrained('permissions');
+            $table->foreignId('user_type_id');
+            $table->foreignId('permission_id');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->primary(['user_type_id', 'permission_id']);

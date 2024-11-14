@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('booklet_questions', function (Blueprint $table) {
             $table->id('question_id');
-            $table->foreignId('booklet_id')->constrained('booklets', 'booklet_id');
+            $table->foreignId('booklet_id');
             $table->enum('question_type', ['multiple_choice', 'open_ended']);
             $table->integer('marks')->nullable();
             $table->dateTime('created_at');

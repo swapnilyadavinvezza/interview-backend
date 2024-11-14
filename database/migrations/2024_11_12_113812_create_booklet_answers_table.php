@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('booklet_answers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('booklet_id')->constrained('booklets', 'booklet_id');
-            $table->foreignId('question_id')->constrained('booklet_questions', 'question_id');
+            $table->foreignId('booklet_id');
+            $table->foreignId('question_id');
             $table->text('answer');
         });
     }
