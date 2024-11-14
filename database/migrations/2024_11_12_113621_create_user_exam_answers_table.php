@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('user_exam_answers', function (Blueprint $table) {
             $table->id('answer_id');
-            $table->foreignId('question_id')->constrained('booklet_questions', 'question_id');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('question_id');
+            $table->foreignId('user_id');
             $table->text('status')->nullable();
             $table->integer('marks_awarded')->nullable();
             $table->integer('exam_id')->nullable();
-            $table->foreignId('booklet_id')->constrained('booklets', 'booklet_id');
+            $table->foreignId('booklet_id');
             $table->dateTime('created_at');
             $table->dateTime('updated_at')->nullable();
         });
