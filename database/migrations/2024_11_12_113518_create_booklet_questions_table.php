@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('booklet_questions', function (Blueprint $table) {
-            $table->id('question_id');
+            $table->id();
             $table->foreignId('booklet_id');
             $table->enum('question_type', ['multiple_choice', 'open_ended']);
             $table->integer('marks')->nullable();

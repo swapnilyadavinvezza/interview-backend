@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('exam_enrollments', function (Blueprint $table) {
-            $table->id('exam_id');
+            $table->id();
             $table->foreignId('booklet_id');
             $table->dateTime('exam_date');
             $table->enum('status', ['pending', 'completed', 'failed']);

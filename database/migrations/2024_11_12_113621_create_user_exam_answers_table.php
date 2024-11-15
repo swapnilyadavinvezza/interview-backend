@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_exam_answers', function (Blueprint $table) {
-            $table->id('answer_id');
+            $table->id();
             $table->foreignId('question_id');
             $table->foreignId('user_id');
             $table->text('status')->nullable();
