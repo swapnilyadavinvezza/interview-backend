@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BookletController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
@@ -29,7 +30,10 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/user/restore/{id}', [UserController::class, 'restore'])->name('user.restore');
     Route::get('/user/status/{id}', [UserController::class, 'status'])->name('user.status');
     Route::get('/user/export', [UserController::class, 'export'])->name('user.export');
-
+    Route::resource('booklets', BookletController::class);
+    Route::get('/booklet/edit/{id}', [BookletController::class, 'edit'])->name('booklet.edit');
+    Route::post('/booklet/update', [BookletController::class, 'update'])->name('booklet.update');
+    Route::get('/booklet/delete/{id}', [BookletController::class, 'destroy'])->name('booklet.delete');
 });
 
 require __DIR__.'/auth.php';
