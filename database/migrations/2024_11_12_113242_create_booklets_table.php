@@ -19,8 +19,8 @@ return new class extends Migration
             $table->enum('status', [1, 0])->default(1);
             $table->string('level', 50)->nullable();
             $table->integer('total_weightage');
-            $table->dateTime('created_by');
-            $table->dateTime('updated_by')->nullable();
+            $table->integer('created_by');
+            $table->integer('updated_by')->nullable();
             $table->dateTime('created_at');
             $table->dateTime('updated_at')->nullable();
         });

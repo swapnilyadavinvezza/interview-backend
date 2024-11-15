@@ -40,6 +40,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.booklets.index') }}"
+                        class="nav-link @if (route('admin.booklets.index') == URL::current()) active @endif">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                        Booklets
+                        </p>
+                    </a>
+                </li>
                 
             </ul>
         </nav>
