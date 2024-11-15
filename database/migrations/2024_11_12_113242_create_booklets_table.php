@@ -14,11 +14,13 @@ return new class extends Migration
         Schema::create('booklets', function (Blueprint $table) {
             $table->id('id');
             $table->integer('duration')->nullable();
-            $table->string('title', 100);
+            $table->string('name', 100);
             $table->text('description')->nullable();
             $table->enum('status', [1, 0])->default(1);
-            $table->string('subject', 50)->nullable();
-            $table->integer('total_wattage');
+            $table->string('level', 50)->nullable();
+            $table->integer('total_weightage');
+            $table->dateTime('created_by');
+            $table->dateTime('updated_by')->nullable();
             $table->dateTime('created_at');
             $table->dateTime('updated_at')->nullable();
         });

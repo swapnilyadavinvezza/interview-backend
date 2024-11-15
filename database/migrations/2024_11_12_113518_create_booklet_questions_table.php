@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('booklet_questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('booklet_id');
-            $table->enum('question_type', ['multiple_choice', 'open_ended']);
+            $table->enum('question_type', ['mcq', 'text', 'image']);
             $table->integer('marks')->nullable();
             $table->dateTime('created_at');
             $table->dateTime('updated_at')->nullable();
