@@ -1,0 +1,12 @@
+type Query {
+    user(id: ID!): User @field(resolver: "App\\GraphQL\\Resolvers\\UserResolver@getUser")
+}
+type Mutation {
+    login(client_id: String!, client_secret: String!, email: String!, password: String!): AccessToken! @field(resolver: "App\\Http\\Controllers\\GraphQL\\LoginResolver")
+}
+
+
+type AccessToken {
+    token: String!
+    expires_in: String!
+}

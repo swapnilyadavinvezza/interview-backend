@@ -11,6 +11,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "maatwebsite/excel": "^3.1",
+        "nuwave/lighthouse": "^6.45",
         "spatie/laravel-permission": "^6.10",
         "yajra/laravel-datatables-oracle": "^11.1"
     },

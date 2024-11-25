@@ -53,6 +53,7 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'passport_login_endpoint' => env('PASSPORT_LOGIN_ENDPOINT', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
