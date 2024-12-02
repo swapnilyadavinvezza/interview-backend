@@ -11,11 +11,14 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "maatwebsite/excel": "^3.1",
+        "mll-lab/laravel-graphiql": "^3.2",
         "nuwave/lighthouse": "^6.45",
+        "rebing/graphql-laravel": "^9.7",
         "spatie/laravel-permission": "^6.10",
         "yajra/laravel-datatables-oracle": "^11.1"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.2",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "^2.2",
         "laravel/pail": "^1.1",

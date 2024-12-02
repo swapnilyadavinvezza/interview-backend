@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\BookletController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BookletController;
+use App\Http\Controllers\Admin\BookletQuestionController;
 
 
 Route::get('/', function () {
@@ -34,6 +35,9 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::get('/booklet/edit/{id}', [BookletController::class, 'edit'])->name('booklet.edit');
     Route::post('/booklet/update', [BookletController::class, 'update'])->name('booklet.update');
     Route::get('/booklet/delete/{id}', [BookletController::class, 'destroy'])->name('booklet.delete');
+    Route::resource('bookletQuestion', BookletQuestionController::class);
+    Route::get('/booklet/question/delete/{id}', [BookletQuestionController::class, 'destroy'])->name('booklet.question.delete');
+    
 });
 
 require __DIR__.'/auth.php';
