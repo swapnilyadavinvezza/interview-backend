@@ -44,7 +44,12 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-
+        'bookletsQuestions' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/bookletsQuestions'),
+            'url' => env('APP_URL') . '/bookletsQuestions',
+            'visibility' => 'public',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
