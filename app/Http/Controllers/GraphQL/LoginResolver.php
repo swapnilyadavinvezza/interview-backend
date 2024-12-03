@@ -44,6 +44,8 @@ class LoginResolver extends Controller
         return [
             'token' => $personalAccessToken->accessToken,
             'expires_in' => $expiresIn,
+            'email' => $user->email,
+            'username' => $user->username
         ];
     }
     
