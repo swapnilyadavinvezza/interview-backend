@@ -6,13 +6,16 @@ return [
             'query' => [
                 'booklets' => \App\GraphQL\Queries\BookletsQuery::class,
             ],
-            'middleware' => [],
-            'method' => ['get', 'post'],
+            'mutation' => [
+                'login' => App\GraphQL\Mutations\LoginMutation::class,
+            ],
         ],
     ],
 
     'types' => [
         'Booklet' => \App\GraphQL\Types\BookletType::class,
+        'LoginResponse' => App\GraphQL\Types\LoginResponseType::class,
+
     ],
 
 ];

@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace App\GraphQL\Queries;
 
 use App\Models\Booklet;
-use Closure;
-use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
-use Rebing\GraphQL\Support\SelectFields;
-
+use Rebing\GraphQL\Support\Facades\GraphQL;
 class BookletsQuery extends Query
 {
+    protected $allowedMethods = ['get', 'post'];
+
     protected $attributes = [
         'name' => 'booklets'
         ];
 
     public function type(): Type
     {
-        return Type::listOf(\GraphQL::type('Booklet'));
+        return Type::listOf(GraphQL::type('Booklet'));
     }
 
  
