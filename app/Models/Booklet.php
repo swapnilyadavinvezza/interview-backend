@@ -20,4 +20,8 @@ class Booklet extends Model
     public function examEnrollment(){
         return $this->hasOne(ExamEnrollment::class, 'booklet_id', 'id');
     }
+
+    public function questions(){
+        return $this->hasMany(BookletQuestion::class);
+    }
 }
