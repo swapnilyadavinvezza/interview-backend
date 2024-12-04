@@ -6,6 +6,7 @@ namespace App\GraphQL\Types;
 use GraphQL\Type\Definition\Type;
 use App\Models\Booklet;
 use Rebing\GraphQL\Support\Type as GraphQLType;
+use Rebing\GraphQL\Support\Facades\GraphQL;
 
 class BookletType extends GraphQLType
 {
@@ -50,7 +51,18 @@ class BookletType extends GraphQLType
             'duration' => [
                 'type' => Type::int(),
                 'description' => 'Duration of booklet'
-            ]
+            ],
+            'duration' => [
+                'type' => Type::int(),
+                'description' => 'Duration of booklet'
+            ],
+            'questions' => [
+                'type' => Type::listOf(GraphQL::type('BookletQuestion')),
+                'description' => 'The questions in the booklet',
+                'resolve' => function ($root) {
+                    return $root->questions; 
+                },
+            ],
         ];
     }
 }
