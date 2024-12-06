@@ -40,7 +40,7 @@ class BookletQuestionType extends GraphQLType
                 'description' => 'First option of booklet'
             ],
             'option_2' => [
-                'type' => Type::int(),
+                'type' => Type::string(),
                 'description' => 'Second option of booklet'
             ],
             'option_3' => [
@@ -48,7 +48,7 @@ class BookletQuestionType extends GraphQLType
                 'description' => 'Third option of booklet'
             ],
             'option_4' => [
-                'type' => Type::int(),
+                'type' => Type::string(),
                 'description' => 'Fourth option of booklet'
             ],
             'image' => [
