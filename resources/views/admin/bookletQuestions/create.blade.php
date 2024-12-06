@@ -166,7 +166,7 @@
             mcqOptions.style.display = 'block';
             answerTextarea.style.display = 'none';
             imageUploader.style.display = 'none';
-        } else if (questionType.value === 'short_answer' || questionType.value === 'long_answer') {
+        } else if (questionType.value === 'text') {
             mcqOptions.style.display = 'none';
             answerTextarea.style.display = 'block';
             imageUploader.style.display = 'none';
