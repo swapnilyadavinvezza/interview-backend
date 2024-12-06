@@ -61,8 +61,7 @@
                                             <option value="">Select Question Type</option>
 
                                             <option value="mcq" {{ old('question_type') == 'mcq' ? 'selected' : '' }}>MCQ</option>
-                                            <option value="short_answer" {{ old('question_type') == 'short_answer' ? 'selected' : '' }}>Short Answer</option>
-                                            <option value="long_answer" {{ old('question_type') == 'long_answer' ? 'selected' : '' }}>Long Answer</option>
+                                            <option value="text" {{ old('question_type') == 'text' ? 'selected' : '' }}>Text</option>
                                             <option value="image" {{ old('question_type') == 'image' ? 'selected' : '' }}>Image</option>
 
                                         </select>

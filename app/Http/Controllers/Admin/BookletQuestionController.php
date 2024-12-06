@@ -34,8 +34,7 @@ class BookletQuestionController extends Controller
                     return $bookletQuestion->booklet->name;
                 })->editColumn('question_type', function ($bookletQuestion) {
                     return match ($bookletQuestion->question_type) {
-                        'long_answer' => '<span class="badge badge-success">Long Answer</span>',
-                        'short_answer' => '<span class="badge badge-info">Short Answer</span>',
+                        'text' => '<span class="badge badge-info">Text</span>',
                         'mcq' => '<span class="badge badge-warning">Multiple Choice</span>',
                         default => '<span class="badge badge-danger">Image</span>'
                     };                })
