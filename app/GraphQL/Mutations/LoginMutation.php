@@ -72,7 +72,9 @@ class LoginMutation extends Mutation
             'token' => $personalAccessToken->accessToken,
             'expires_in' => $expiresIn,
             'email' => $user->email,
-            'username' => $user->username
+            'username' => $user->username,
+            'userID' => $user->id
+
         ];
     }
     

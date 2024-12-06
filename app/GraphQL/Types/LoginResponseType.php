@@ -31,6 +31,10 @@ class LoginResponseType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'The OAuth token',
             ],
+            'userID' => [
+                'type' => Type::int(),
+                'description' => 'The user id',
+            ],
         ];
     }
 }
