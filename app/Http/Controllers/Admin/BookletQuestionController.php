@@ -81,7 +81,7 @@ class BookletQuestionController extends Controller
             'option_2' => $request->option_2 ?? null,
             'option_3' => $request->option_3 ?? null,
             'option_4' => $request->option_4 ?? null,
-            'answer'  => $request->answer,
+            'answer'  => $request->correct_answer,
             'image' => $file_name ?? null
         ];
 
