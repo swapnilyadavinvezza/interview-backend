@@ -119,6 +119,23 @@
                                         <input type="text" id="option_4" name="option_4" class="form-control" value="{{ old('option_4') }}">
                                     </div>
                                 </div>
+                                <div class="col-md-6" id="correct_answer">
+                                    <div class="form-group">
+                                        <label for="correct_answer">Correct Answer</label>
+                                        <select  class="form-control @error('correct_answer') is-invalid @enderror" name="correct_answer">
+                                            <option value="">Select Correct Answer</option>
+                                            <option value="question_1" {{ old('question_1') == 'question_1' ? 'selected' : '' }}>Option 1</option>
+                                            <option value="question_2" {{ old('question_2') == 'question_2' ? 'selected' : '' }}>Option 2</option>
+                                            <option value="question_3" {{ old('question_3') == 'question_3' ? 'selected' : '' }}>Option 3</option>
+                                            <option value="question_4" {{ old('question_4') == 'question_4' ? 'selected' : '' }}>Option 4</option>
+                                        </select>
+                                        @error('correct_answer')
+                                        <span class="error invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-md-6" id="answer-textarea" style="display: none;">
                                     <div class="form-group">
                                         <label for="answer">Answer</label>
@@ -159,11 +176,13 @@
     const mcqOptions = document.getElementById('mcq-options');
     const answerTextarea = document.getElementById('answer-textarea');
     const imageUploader = document.getElementById('image-uploader');
+    const correctAnswer = document.getElementById('correct_answer');
 
     // Show or hide MCQ options based on the selected type
     questionType.addEventListener('change', function() {
         if (questionType.value === 'mcq') {
             mcqOptions.style.display = 'block';
+            correctAnswer.style.display = 'block';
             answerTextarea.style.display = 'none';
             imageUploader.style.display = 'none';
         } else if (questionType.value === 'text') {
@@ -176,6 +195,7 @@
             imageUploader.style.display = 'block';
         } else {
             mcqOptions.style.display = 'none';
+            correctAnswer.style.display = 'none';
             answerTextarea.style.display = 'none';
             imageUploader.style.display = 'none';
         }
@@ -184,6 +204,7 @@
     // Check the initial value of question_type in case of a validation error or page reload
     if (questionType.value === 'mcq') {
         mcqOptions.style.display = 'block';
+        correctAnswer.style.display = 'block';
         answerTextarea.style.display = 'none';
         imageUploader.style.display = 'none';
     } else if (questionType.value === 'short_answer' || questionType.value === 'long_answer') {
@@ -194,6 +215,9 @@
         mcqOptions.style.display = 'none';
         answerTextarea.style.display = 'none';
         imageUploader.style.display = 'block';
+    }else{
+        correctAnswer.style.display = 'none';
+
     }
 </script>
 @endsection
