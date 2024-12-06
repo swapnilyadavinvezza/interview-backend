@@ -52,11 +52,11 @@ class BookletQuestionType extends GraphQLType
                 'description' => 'Fourth option of booklet'
             ],
             'image' => [
-                'type' => Type::int(),
+                'type' => Type::string(),
                 'description' => 'Image of booklet'
             ],
             'answer' => [
-                'type' => Type::int(),
+                'type' => Type::string(),
                 'description' => 'Answer of booklet'
             ]
         ];
