@@ -8,6 +8,7 @@ return [
             ],
             'mutation' => [
                 'login' => App\GraphQL\Mutations\LoginMutation::class,
+                'createAnswer' => App\GraphQL\Mutations\CreateAnswerMutation::class
             ],
         ],
     ],
@@ -16,6 +17,7 @@ return [
         'Booklet' => \App\GraphQL\Types\BookletType::class,
         'LoginResponse' => App\GraphQL\Types\LoginResponseType::class,
         'BookletQuestion'=>\App\GraphQL\Types\BookletQuestionType::class,
+        'AnswerResponse'=>\App\GraphQL\Types\AnswerResponseType::class
 
     ],
 
