@@ -60,14 +60,17 @@ class BookletType extends GraphQLType
                 'type' => Type::listOf(GraphQL::type('BookletQuestion')),
                 'description' => 'The questions in the booklet',
                 'resolve' => function ($root) {
-                    return $root->questions; 
-                },
-            ],
-            'answers' => [
-                'type' => Type::listOf(GraphQL::type('BookletAnswer')),
-                'description' => 'The answers in the booklet',
-                'resolve' => function ($root) {
-                    return $root->answers; 
+                    return $root->questions()->with('answer')->get()->map(function ($question) {
+
+                        $answer = $question->answer;
+
+                        $answerData = $answer ? $answer->answer : null;
+                        return [
+                            'id' => $question->id,
+                            'question' => $question->question,
+                            'answer' => $answerData,
+                        ];
+                    });
                 },
             ],
         ];

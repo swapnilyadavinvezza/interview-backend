@@ -15,7 +15,7 @@ class BookletQuestion extends Model
         'option_2',
         'option_3',
         'option_4',
-        'answer',
+        'correct_answer',
         'image',
     ];
 
@@ -23,5 +23,10 @@ class BookletQuestion extends Model
     public function booklet()
     {
         return $this->belongsTo(Booklet::class, 'booklet_id', 'id');
+    }
+
+    public function answer()
+    {
+        return $this->hasOne(BookletAnswer::class, 'question_id', 'id');
     }
 }
