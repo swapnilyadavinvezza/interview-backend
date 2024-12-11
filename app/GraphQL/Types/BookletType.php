@@ -63,6 +63,13 @@ class BookletType extends GraphQLType
                     return $root->questions; 
                 },
             ],
+            'answers' => [
+                'type' => Type::listOf(GraphQL::type('BookletAnswer')),
+                'description' => 'The answers in the booklet',
+                'resolve' => function ($root) {
+                    return $root->answers; 
+                },
+            ],
         ];
     }
 }

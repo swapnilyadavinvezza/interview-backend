@@ -24,4 +24,8 @@ class Booklet extends Model
     public function questions(){
         return $this->hasMany(BookletQuestion::class);
     }
+
+    public function answers(){
+        return $this->hasMany(BookletAnswer::class);
+    }
 }
