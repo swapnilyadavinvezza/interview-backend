@@ -17,6 +17,7 @@ return [
         'Booklet' => \App\GraphQL\Types\BookletType::class,
         'LoginResponse' => App\GraphQL\Types\LoginResponseType::class,
         'BookletQuestion'=>\App\GraphQL\Types\BookletQuestionType::class,
+        'BookletAnswer'=>\App\GraphQL\Types\BookletAnswerType::class,
         'AnswerResponse'=>\App\GraphQL\Types\AnswerResponseType::class
 
     ],
