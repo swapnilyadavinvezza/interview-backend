@@ -69,6 +69,12 @@ class BookletType extends GraphQLType
                             'id' => $question->id,
                             'question' => $question->question,
                             'answer' => $answerData,
+                            'question_type'=>$question->question_type,
+                            'option_1'=>$question->option_1,
+                            'option_2'=>$question->option_2,
+                            'option_3'=>$question->option_3,
+                            'option_4'=>$question->option_4,
+                            'image'=>$question->image
                         ];
                     });
                 },
