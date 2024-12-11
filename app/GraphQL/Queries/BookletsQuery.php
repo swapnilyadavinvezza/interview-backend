@@ -38,7 +38,7 @@ class BookletsQuery extends Query
    
 
         if (isset($args['user_id'])) {
-            return Booklet::with('examEnrollment','questions','answers')
+                return Booklet::with('examEnrollment','questions.answer')
                         ->whereHas('examEnrollment',function($query) use($args){
                             $query->where('user_id',$args['user_id']);
                         })->get();
