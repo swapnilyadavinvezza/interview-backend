@@ -58,7 +58,16 @@
                         </p>
                     </a>
                 </li>
-                
+
+                <!-- This is a navigation list item that represents a link in the sidebar menu. -->
+                <li class="nav-item">
+                    <a href="{{ route('admin.examEnrollments.index') }}"
+                        class="nav-link @if (route('admin.examEnrollments.index') == URL::current()) active @endif">
+                        <i class="nav-icon fas fa-user-plus"></i>
+                        <p>Exam Enrollments</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

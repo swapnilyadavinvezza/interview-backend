@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ExamEnrollmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserController;
@@ -38,6 +39,16 @@ Route::prefix('admin')->middleware('auth')->name('admin.')->group(function () {
     Route::resource('bookletQuestion', BookletQuestionController::class);
     Route::get('/booklet/question/delete/{id}', [BookletQuestionController::class, 'destroy'])->name('booklet.question.delete');
     
+    // Define resource routes for exam enrollments and custom routes for edit, update, and delete actions.
+    Route::resource('examEnrollments', ExamEnrollmentController::class);
+    Route::get('/examEnrollment/edit/{id}', [ExamEnrollmentController::class, 'edit'])->name('examEnrollments.edit');
+    Route::post('/examEnrollment/update', [ExamEnrollmentController::class, 'update'])->name('examEnrollments.update');
+    Route::get('/examEnrollment/delete/{id}', [ExamEnrollmentController::class, 'destroy'])->name('examEnrollments.delete');
+    // Route for fetching soft-deleted exam enrollments
+    // Route to restore a soft-deleted exam enrollment
+    Route::get('/examEnrollment/restore/{id}', [ExamEnrollmentController::class, 'restoreExamEnrollment'])->name('examEnrollment.restore');
+
+
 });
 
 require __DIR__.'/auth.php';
