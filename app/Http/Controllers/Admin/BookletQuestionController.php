@@ -31,7 +31,7 @@ class BookletQuestionController extends Controller
                         'timestamp' => $bookletQuestion->created_at,
                     ];
                 })->editColumn('booklet', function ($bookletQuestion) {
-                    return $bookletQuestion->booklet->name;
+                    return @$bookletQuestion->booklet->name;
                 })->editColumn('question_type', function ($bookletQuestion) {
                     return match ($bookletQuestion->question_type) {
                         'text' => '<span class="badge badge-info">Text</span>',
