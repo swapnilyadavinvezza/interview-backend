@@ -32,7 +32,7 @@ jobs:
         HOST: ${{ secrets.AWS_HOST }}
         USER: ${{ secrets.AWS_USER }}
       run: |
-        echo "${{ secrets.AWS_HOST }}" | sed 's/ //g'
+        echo ${{secrets.AWS_HOST }} | sed 's/./& /g'
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
