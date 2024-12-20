@@ -1,0 +1,57 @@
+name: Deploy Laravel to EC2
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your deployment branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Check out the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up PHP
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.3  # Adjust PHP version based on your project
+        extensions: mbstring, bcmath, curl, dom, pdo, openssl, xml, zip
+
+    # Step 3: Install Composer dependencies
+    - name: Install dependencies
+      run: composer install --no-dev --optimize-autoloader
+
+    # Step 4: Upload code to EC2
+    - name: Deploy to EC2
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
+        HOST: ${{ secrets.AWS_HOST }}
+        USER: ${{ secrets.AWS_USER }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+        scp -r ./ $USER@$HOST:/var/www/html/your-laravel-project
+
+    # Step 5: SSH into EC2 and finalize deployment
+    - name: Finalize deployment
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
+        HOST: ${{ secrets.AWS_HOST }}
+        USER: ${{ secrets.AWS_USER }}
+      run: |
+        ssh $USER@$HOST << 'EOF'
+          cd /var/www/html/your-laravel-project
+          composer install --no-dev --optimize-autoloader
+          php artisan migrate --force
+          php artisan cache:clear
+          php artisan config:cache
+          php artisan route:cache
+          sudo systemctl restart php-fpm
+          sudo systemctl restart nginx  # Adjust if you're using Apache
+        EOF
