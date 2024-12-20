@@ -30,7 +30,8 @@ jobs:
       env:
         SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
         HOST: ${{ secrets.AWS_HOST }}
-        USER: ${{ secrets.AWS_USER }}
+        AWS_USER: ubuntu
+
       run: |
         echo "${{secrets.AWS_HOST }}"
         echo "${{secrets.AWS_USER }}"
