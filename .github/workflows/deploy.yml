@@ -26,16 +26,6 @@ jobs:
       run: composer install --no-dev --optimize-autoloader
 
     # Step 4: Upload code to EC2
-    - name: Deploy to EC2
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
-        HOST: ${{ secrets.AWS_HOST }}
-        USER: ${{ secrets.AWS_USER }}
-        echo "HOST: $HOST"
-        echo "USER: $USER"
-      run: |
-        ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-        scp -r ./ $USER@$HOST:/var/www/interview-backend
 
     # Step 5: SSH into EC2 and finalize deployment
     - name: Finalize deployment
