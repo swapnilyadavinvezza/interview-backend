@@ -33,12 +33,9 @@ jobs:
         USER: ${{ secrets.AWS_USER }}
         echo "HOST: $HOST"
         echo "USER: $USER"
-      # run: |
-      #   mkdir -p ~/.ssh
-      #   echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-      #   chmod 600 ~/.ssh/id_rsa
-      #   ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-      #   scp -r ./ $USER@$HOST:/var/www/interview-backend
+      run: |
+        ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+        scp -r ./ $USER@$HOST:/var/www/interview-backend
 
     # Step 5: SSH into EC2 and finalize deployment
     - name: Finalize deployment
