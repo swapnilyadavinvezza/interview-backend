@@ -34,7 +34,7 @@ jobs:
       run: |
         echo "${{secrets.AWS_HOST }}"
         echo "${{secrets.AWS_USER }}"
-        echo "${{secrets.AWS_SSH_KEY }}"
+        echo "${{secrets.AWS_SSH_KEY }}" | sed 's/ //g'
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa | sed 's/ //g'
         chmod 600 ~/.ssh/id_rsa
