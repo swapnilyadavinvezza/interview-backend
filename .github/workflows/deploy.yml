@@ -31,6 +31,8 @@ jobs:
         SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
         HOST: ${{ secrets.AWS_HOST }}
         USER: ${{ secrets.AWS_USER }}
+        echo "HOST: $HOST"
+        echo "USER: $USER"
       run: |
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
