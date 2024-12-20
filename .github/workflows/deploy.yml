@@ -36,7 +36,7 @@ jobs:
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-        scp -r ./ $USER@$HOST:/var/www/html/your-laravel-project
+        scp -r ./ $USER@$HOST:/var/www/html/interview-backend
 
     # Step 5: SSH into EC2 and finalize deployment
     - name: Finalize deployment
@@ -46,7 +46,7 @@ jobs:
         USER: ${{ secrets.AWS_USER }}
       run: |
         ssh $USER@$HOST << 'EOF'
-          cd /var/www/html/your-laravel-project
+          cd /var/www/html/interview-backend
           composer install --no-dev --optimize-autoloader
           php artisan migrate --force
           php artisan cache:clear
