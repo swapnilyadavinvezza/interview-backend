@@ -27,33 +27,33 @@ jobs:
 
     # Step 4: Upload code to EC2
     - name: Deploy to EC2
-      # env:
-      #   SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
-      #   HOST: ${{ secrets.AWS_HOST }}
-      #   USER: ${{ secrets.AWS_USER }}
-      #   echo "HOST: $HOST"
-      #   echo "USER: $USER"
-      # run: |
-      #   mkdir -p ~/.ssh
-      #   echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-      #   chmod 600 ~/.ssh/id_rsa
-      #   ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
-      #   scp -r ./ $USER@$HOST:/var/www/interview-backend
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
+        HOST: ${{ secrets.AWS_HOST }}
+        USER: ${{ secrets.AWS_USER }}
+        echo "HOST: $HOST"
+        echo "USER: $USER"
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
+        scp -r ./ $USER@$HOST:/var/www/interview-backend
 
-    # Step 5: SSH into EC2 and finalize deployment
-    # - name: Finalize deployment
-    #   env:
-    #     SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
-    #     HOST: ${{ secrets.AWS_HOST }}
-    #     USER: ${{ secrets.AWS_USER }}
-    #   run: |
-    #     ssh $USER@$HOST << 'EOF'
-    #       cd /var/www/interview-backend
-    #       composer install --no-dev --optimize-autoloader
-    #       php artisan migrate --force
-    #       php artisan cache:clear
-    #       php artisan config:cache
-    #       php artisan route:cache
-    #       sudo systemctl restart php-fpm
-    #       sudo systemctl restart nginx  # Adjust if you're using Apache
-    #     EOF
+    Step 5: SSH into EC2 and finalize deployment
+    - name: Finalize deployment
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
+        HOST: ${{ secrets.AWS_HOST }}
+        USER: ${{ secrets.AWS_USER }}
+      run: |
+        ssh $USER@$HOST << 'EOF'
+          cd /var/www/interview-backend
+          composer install --no-dev --optimize-autoloader
+          php artisan migrate --force
+          php artisan cache:clear
+          php artisan config:cache
+          php artisan route:cache
+          sudo systemctl restart php-fpm
+          sudo systemctl restart nginx  # Adjust if you're using Apache
+        EOF
