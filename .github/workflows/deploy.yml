@@ -40,7 +40,7 @@ jobs:
         ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
         scp -r ./ $USER@$HOST:/var/www/interview-backend
 
-    Step 5: SSH into EC2 and finalize deployment
+    # Step 5: SSH into EC2 and finalize deployment
     - name: Finalize deployment
       env:
         SSH_PRIVATE_KEY: ${{ secrets.AWS_SSH_KEY }}
