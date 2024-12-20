@@ -36,7 +36,7 @@ jobs:
         echo "${{secrets.AWS_USER }}"
         echo "${{secrets.AWS_SSH_KEY }}"
         mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa | sed 's/ //g'
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H $HOST >> ~/.ssh/known_hosts
         scp -r ./ $USER@$HOST:/var/www/interview-backend
