@@ -13,6 +13,7 @@
         "maatwebsite/excel": "^3.1",
         "mll-lab/laravel-graphiql": "^3.2",
         "nuwave/lighthouse": "^6.45",
+        "owen-it/laravel-auditing": "^13.6",
         "rebing/graphql-laravel": "^9.7",
         "spatie/laravel-permission": "^6.10",
         "yajra/laravel-datatables-oracle": "^11.1"
