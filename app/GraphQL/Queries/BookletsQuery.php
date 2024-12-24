@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Queries;
 
+use Carbon\Carbon;
 use App\Models\Booklet;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Query;
@@ -38,11 +39,22 @@ class BookletsQuery extends Query
    
 
         if (isset($args['user_id'])) {
-                return Booklet::with('examEnrollment','questions.answer')
-                        ->whereHas('examEnrollment',function($query) use($args){
-                            $query->where('user_id',$args['user_id']);
-                        })->get();
-        
+            $data = Booklet::with(['examEnrollment', 'questions.answer' => function ($query) {
+                $query->select(['id', 'booklet_id', 'created_at']);
+            }])->whereHas('examEnrollment', function ($query) use ($args) {
+                    $query->where('user_id', $args['user_id']);
+                })->get()
+                ->map(function ($booklet) {
+                    $totalTime = $booklet->questions->sum(function ($question) {
+
+                        return $question->answer ? Carbon::parse($question->answer->created_at)->diffInSeconds(now()) : 0;
+                    });
+                    $booklet->remaining_time = $totalTime;
+
+                    return $booklet;
+                });
+    
+            return $data;
         }
         return Booklet::all();
     }
