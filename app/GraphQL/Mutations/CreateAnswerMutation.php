@@ -34,6 +34,9 @@ class CreateAnswerMutation extends Mutation
             'answer' => [
                 'type' =>  Type::nonNull(Type::string()),
             ],
+            'booklet_status' => [
+                'type' => Type::int(),
+            ]
             
         ];
     }
@@ -46,6 +49,7 @@ class CreateAnswerMutation extends Mutation
             'booklet_id' => $args['booklet_id'],
             'question_id' => $args['question_id'],
             'answer' => $args['answer'],
+            'status' => $args['booklet_status']
         ];
 
         $bookletAnswer = BookletAnswer::create($data);
