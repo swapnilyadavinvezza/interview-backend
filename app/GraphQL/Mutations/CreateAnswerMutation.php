@@ -4,6 +4,7 @@ namespace App\GraphQL\Mutations;
 
 use Laravel\Passport\Token;
 use App\Models\BookletAnswer;
+use App\Models\ExamEnrollment;
 use GraphQL\Type\Definition\Type;
 use Illuminate\Support\Facades\Auth;
 use Rebing\GraphQL\Support\Mutation;
@@ -53,6 +54,11 @@ class CreateAnswerMutation extends Mutation
         ];
 
         $bookletAnswer = BookletAnswer::create($data);
+        if(isset($args['booklet_status'])){
+            $examEnrollment = ExamEnrollment::where('booklet_id', $args['booklet_id'])->first();
+            $examEnrollment->status = 'completed';
+            $examEnrollment->save();
+        }
         return $bookletAnswer;
 
     }
