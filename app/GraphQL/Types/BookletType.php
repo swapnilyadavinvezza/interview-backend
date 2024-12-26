@@ -36,10 +36,6 @@ class BookletType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'Description of booklet'
             ],
-            'status' => [
-                'type' => Type::string(),
-                'description' => 'Status of booklet'
-            ],
             'total_weightage' => [
                 'type' => Type::int(),
                 'description' => 'Total weightage of booklet'
@@ -55,6 +51,14 @@ class BookletType extends GraphQLType
             'duration' => [
                 'type' => Type::int(),
                 'description' => 'Duration of booklet'
+            ],
+            'status'=>[
+                'type'=>Type::string(),
+                'description'=>'Status of exam enrollment',
+                'resolve'=> function($root){
+                    return $root->examEnrollment->status;
+                } 
+
             ],
             'questions' => [
                 'type' => Type::listOf(GraphQL::type('BookletQuestion')),

@@ -55,7 +55,7 @@ class CreateAnswerMutation extends Mutation
 
         $bookletAnswer = BookletAnswer::create($data);
         if(isset($args['booklet_status'])){
-            $examEnrollment = ExamEnrollment::where('booklet_id', $args['booklet_id'])->first();
+            $examEnrollment = ExamEnrollment::where('booklet_id', $args['booklet_id'])->where('user_id',$args['user_id'])->first();
             $examEnrollment->status = 'completed';
             $examEnrollment->save();
         }
