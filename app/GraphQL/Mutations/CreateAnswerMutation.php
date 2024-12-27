@@ -54,11 +54,12 @@ class CreateAnswerMutation extends Mutation
         ];
 
         $bookletAnswer = BookletAnswer::create($data);
-        if(isset($args['booklet_status'])){
-            $examEnrollment = ExamEnrollment::where('booklet_id', $args['booklet_id'])->where('user_id',$args['user_id'])->first();
-            $examEnrollment->status = 'completed';
-            $examEnrollment->save();
-        }
+        $examEnrollment = ExamEnrollment::where('booklet_id', $args['booklet_id'])
+        ->where('user_id', $args['user_id'])
+        ->first();
+        $examEnrollment->status = $args['booklet_status'] === 1 ? 'completed' : 'pending';
+        $examEnrollment->save();
+        
         return $bookletAnswer;
 
     }
