@@ -39,20 +39,28 @@ class BookletsQuery extends Query
    
 
         if (isset($args['user_id'])) {
-            $data = Booklet::with(['examEnrollment', 'questions.answer' => function ($query) {
-                $query->select(['id', 'booklet_id', 'created_at']);
-            }])->whereHas('examEnrollment', function ($query) use ($args) {
-                    $query->where('user_id', $args['user_id']);
-                })->get()
-                ->map(function ($booklet) {
-                    $totalTime = $booklet->questions->sum(function ($question) {
+            $data = Booklet::with([
+                'questions.answer' => function ($query) {
+                    $query->select(['id', 'question_id', 'created_at']);
+                }
+            ])
+            ->whereHas('examEnrollment', function ($query) use ($args) {
+                $query->where('user_id', $args['user_id']);
+            })
+            ->get()
+            ->map(function ($booklet) {
+              
+                $totalTime = $booklet->questions->sum(function ($question) {
+                   
 
-                        return $question->answer ? Carbon::parse($question->answer->created_at)->diffInSeconds(now()) : 0;
-                    });
-                    $booklet->remaining_time = $totalTime;
-
-                    return $booklet;
+                    $createdAt = Carbon::parse($question->answer->created_at ?? null);
+                    return $question->answer ? $createdAt->diffInSeconds(Carbon::now()) : 0;
                 });
+            
+                $booklet->remaining_time = $totalTime;
+            
+                return $booklet;
+            });
     
             return $data;
         }
