@@ -84,7 +84,7 @@ class BookletType extends GraphQLType
                 },
             ],
             'remaining_time' => [
-                'type' => Type::int(),
+                'type' => Type::string(),
                 'description' => 'Remaining time of booklet'
             ],
         ];
